@@ -38,6 +38,7 @@ async function createToolCache(sourceDir, tool = 'pg_format', cacheKey = pgForma
         cacheKey
     );
 
+    exec.exec('ls', [pgFormatCachedDir]);
     return path.join(pgFormatCachedDir, tool);
 }
 
@@ -62,8 +63,6 @@ async function run() {
         const cachedToolPath = await createToolCache(srcDir);
 
         // Set execution permissions
-        exec.exec('ls', [srcDir]);
-        exec.exec('ls', [cachedToolPath]);
         exec.exec('chmod', ['+x', cachedToolPath], { silent: true });
 
         const files = await getFiles(INPUT_PATTERN, INPUT_FOLLOW_SYMBOLIC_LINKS)
