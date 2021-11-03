@@ -10,8 +10,8 @@ const INPUT_PATTERN = core.getInput('pattern');
 const INPUT_FOLLOW_SYMBOLIC_LINKS = core.getInput('follow-symbolic-links').toLowerCase() === 'true';
 const INPUT_EXTRA_ARGS = core.getInput('extra-args') || '';
 
-const pgFormatterVersion = 'v5.1'
-const pgFormatterUrl = `https://github.com/darold/pgFormatter/archive/refs/tags/${pgFormatterVersion}.zip`
+const pgFormatterVersion = '5.1'
+const pgFormatterUrl = `https://github.com/darold/pgFormatter/archive/refs/tags/v${pgFormatterVersion}.zip`
 
 async function ensurePerlInstalled() {
     await exec.exec('perl', ['-v']);
@@ -25,7 +25,9 @@ async function downloadPgFormat() {
     const extractedDir = process.env['RUNNER_TEMP'];
     await tc.extractZip(formatterArchive, extractedDir);
 
-    return extractedDir;
+    const toolRootDir = `pgFormatter-${pgFormatterVersion}`;
+
+    return extractedDir + toolRootDir;
 }
 
 async function createToolCache(sourceDir, tool = 'pg_format', cacheKey = pgFormatterVersion) {
@@ -35,9 +37,8 @@ async function createToolCache(sourceDir, tool = 'pg_format', cacheKey = pgForma
         tool,
         cacheKey
     );
-    const pgFormatterCachedPath = path.join(pgFormatCachedDir, tool)
 
-    return path.join(pgFormatterCachedPath, tool);
+    return path.join(pgFormatCachedDir, tool);
 }
 
 async function getFiles(patterns = [], followSymlinks = true) {
