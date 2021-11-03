@@ -8476,7 +8476,7 @@ const glob = __nccwpck_require__(1147);
 
 const INPUT_PATTERN = core.getInput('pattern');
 const INPUT_FOLLOW_SYMBOLIC_LINKS = core.getInput('follow-symbolic-links').toLowerCase() === 'true';
-const INPUT_EXTRA_ARGS = core.getInput('extra-args');
+const INPUT_EXTRA_ARGS = core.getInput('extra-args') || '';
 
 const pgFormatterVersion = 'https://github.com/darold/pgFormatter/archive/refs/tags/v5.1.zip'
 const pgFormatterUrl = 'https://github.com/darold/pgFormatter/archive/refs/tags/v5.1.zip'
@@ -8532,7 +8532,7 @@ async function run() {
         const files = await getFiles(INPUT_PATTERN, INPUT_FOLLOW_SYMBOLIC_LINKS)
 
         // Extra args
-        const extraArgs = INPUT_EXTRA_ARGS?.split(' ') || [];
+        const extraArgs = INPUT_EXTRA_ARGS.split(' ');
 
         let formatterArgs = ['-i'];
 
