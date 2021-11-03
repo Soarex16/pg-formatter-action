@@ -79,7 +79,7 @@ async function run() {
                 core.info(`Processing ${filePath}`);
                 await exec.exec(
                     cachedToolPath,
-                    formatterArgs['-i']
+                    formatterArgs
                         .concat(extraArgs)
                         .concat(filePath)
                 );
