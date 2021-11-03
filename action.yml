@@ -1,4 +1,4 @@
-name: 'pgFormatter'
+name: 'pg-formatter-action'
 description: 'Reformat PostgreSQL code with pgFormatter'
 inputs:
   pattern:
