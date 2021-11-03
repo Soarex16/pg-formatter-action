@@ -69,7 +69,7 @@ async function run() {
         // Extra args
         const extraArgs = INPUT_EXTRA_ARGS.split(' ');
 
-        let formatterArgs = ['-i'];
+        const formatterArgs = ['-i'];
 
         // Run pgFormatter
         await exec.exec(cachedToolPath, ['--version']);
