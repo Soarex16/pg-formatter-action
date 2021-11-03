@@ -1,5 +1,8 @@
 name: 'pg-formatter-action'
 description: 'Reformat PostgreSQL code with pgFormatter'
+branding:
+  icon: 'database'  
+  color: 'blue'
 inputs:
   pattern:
     required: false
