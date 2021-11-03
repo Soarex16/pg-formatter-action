@@ -14769,7 +14769,7 @@ async function downloadPgFormat() {
 
     const toolRootDir = `pgFormatter-${pgFormatterVersion}`;
 
-    return extractedDir + toolRootDir;
+    return path.join(extractedDir, toolRootDir);
 }
 
 async function createToolCache(sourceDir, tool = 'pg_format', cacheKey = pgFormatterVersion) {
