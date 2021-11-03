@@ -18,8 +18,8 @@ jobs:
           extra-args: -o test_files/formatted.sql
         uses: ./.
       - name: Commit changes
-          uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            commit_user_name: 'pgFormatter formatter action'
-            commit_message: Apply formatting
-            branch: ${{ github.head_ref }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_user_name: 'pgFormatter formatter action'
+          commit_message: Apply formatting
+          branch: ${{ github.head_ref }}
