@@ -73,9 +73,7 @@ async function run() {
         await exec.exec(cachedToolPath, ['--version']);
 
         if (files.length > 0) {
-            core.info(files.toString());
-
-            for (let filePath in files) {
+            for (let filePath of files) {
                 core.info(`Processing ${filePath}`);
                 await exec.exec(
                     cachedToolPath,
