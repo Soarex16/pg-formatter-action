@@ -14818,8 +14818,9 @@ async function run() {
             for (let filePath of files) {
                 core.info(`Processing ${filePath}`);
                 await exec.exec(
-                    cachedToolPath,
-                    formatterArgs
+                    'perl',
+                    ['-Mutf8', cachedToolPath]
+                        .concat(formatterArgs)
                         .concat(filePath)
                 );
             }
