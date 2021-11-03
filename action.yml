@@ -18,6 +18,7 @@ inputs:
     required: false
     description: >
       Extra arguments to pass to pgFormatter.
+    default: -i
 runs:
   using: 'node12'
   main: 'dist/index.js'

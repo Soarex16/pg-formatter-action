@@ -67,9 +67,7 @@ async function run() {
         const files = await getFiles(INPUT_PATTERN, INPUT_FOLLOW_SYMBOLIC_LINKS)
 
         // Extra args
-        const extraArgs = INPUT_EXTRA_ARGS.split(' ');
-
-        const formatterArgs = ['-i'];
+        const formatterArgs = INPUT_EXTRA_ARGS.split(' ');
 
         // Run pgFormatter
         await exec.exec(cachedToolPath, ['--version']);
@@ -80,7 +78,6 @@ async function run() {
                 await exec.exec(
                     cachedToolPath,
                     formatterArgs
-                        .concat(extraArgs)
                         .concat(filePath)
                 );
             }
