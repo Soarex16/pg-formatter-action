@@ -1,0 +1,23 @@
+{
+  "name": "pg-formatter-action",
+  "version": "1.0.0",
+  "description": "Format your PostgreSQL scripts with pgFormat",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "ncc build index.js -o dist",
+    "all": "npm run prepare"
+  },
+  "keywords": [
+    "foramtter",
+    "sql",
+    "postgres"
+  ],
+  "author": "Shumaf Lovpache",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1"
+  }
+}
