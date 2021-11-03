@@ -14780,11 +14780,10 @@ async function createToolCache(sourceDir, tool = 'pg_format', cacheKey = pgForma
         cacheKey
     );
 
-    exec.exec('ls', [pgFormatCachedDir]);
     return path.join(pgFormatCachedDir, tool);
 }
 
-async function getFiles(patterns = [], followSymlinks = true) {
+async function getFiles(pattern, followSymlinks = true) {
     // Glob for the files to format
     const globber = await glob.create(
         pattern,
