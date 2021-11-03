@@ -14819,7 +14819,7 @@ async function run() {
                 core.info(`Processing ${filePath}`);
                 await exec.exec(
                     'perl',
-                    ['-Mutf8', cachedToolPath]
+                    ['-CSDA', cachedToolPath]
                         .concat(formatterArgs)
                         .concat(filePath)
                 );
