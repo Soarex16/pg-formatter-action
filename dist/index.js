@@ -14779,8 +14779,7 @@ async function createToolCache(sourceDir, tool = 'pg_format', cacheKey = pgForma
     );
     const pgFormatterCachedPath = path.join(pgFormatCachedDir, tool)
 
-    // Set execution permissions
-    exec.exec('chmod', ['+x', pgFormatterCachedPath], { silent: true });
+    return path.join(pgFormatterCachedPath, tool);
 }
 
 async function getFiles(patterns = [], followSymlinks = true) {
@@ -14802,6 +14801,10 @@ async function run() {
 
         const srcDir = await downloadPgFormatter();
         const cachedToolPath = await createToolCache(srcDir);
+
+        // Set execution permissions
+        exec.exec('ls', [cachedToolPath]);
+        exec.exec('chmod', ['+x', cachedToolPath], { silent: true });
 
         const files = await getFiles(INPUT_PATTERN, INPUT_FOLLOW_SYMBOLIC_LINKS)
 
