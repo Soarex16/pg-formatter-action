@@ -10,14 +10,14 @@ const INPUT_PATTERN = core.getInput('pattern');
 const INPUT_FOLLOW_SYMBOLIC_LINKS = core.getInput('follow-symbolic-links').toLowerCase() === 'true';
 const INPUT_EXTRA_ARGS = core.getInput('extra-args') || '';
 
-const pgFormatterVersion = 'https://github.com/darold/pgFormatter/archive/refs/tags/v5.1.zip'
-const pgFormatterUrl = 'https://github.com/darold/pgFormatter/archive/refs/tags/v5.1.zip'
+const pgFormatterVersion = 'v5.1'
+const pgFormatterUrl = `https://github.com/darold/pgFormatter/archive/refs/tags/${pgFormatterVersion}.zip`
 
 async function ensurePerlInstalled() {
     await exec.exec('perl', ['-v']);
 }
 
-async function downloadPgFormatter() {
+async function downloadPgFormat() {
     // Download archive
     const formatterArchive = await tc.downloadTool(pgFormatterUrl);
 
@@ -57,10 +57,11 @@ async function run() {
     try {
         await ensurePerlInstalled();
 
-        const srcDir = await downloadPgFormatter();
+        const srcDir = await downloadPgFormat();
         const cachedToolPath = await createToolCache(srcDir);
 
         // Set execution permissions
+        exec.exec('ls', [srcDir]);
         exec.exec('ls', [cachedToolPath]);
         exec.exec('chmod', ['+x', cachedToolPath], { silent: true });
 
